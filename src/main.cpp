@@ -1,9 +1,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <exception>
 
 #include <sol.hpp>
 #include <physfs.h>
+#include <spdlog/spdlog.h>
+
+#include "FileSystem.hpp"
 
 std::vector<std::string> split(const std::string& input, const std::string& delimiter)
 {
@@ -45,9 +49,15 @@ sol::as_table_t<std::vector<std::string>> fs_list()
 
 int main()
 {
-    // Init PhysicsFS
-    PHYSFS_init(nullptr);
-    PHYSFS_addToSearchPath("test.7z", 1);
+    // Config
+    const std::string log_directory = "logs/";
+
+    // Init spdlog
+    spdlog::set_async_mode(4096);
+    auto logger = spdlog::daily_logger_mt("system", log_directory + "system.log");
+
+    // Init FileSystem
+    FileSystem fs;
 
     // Init Sol 2
     sol::state lua;
@@ -58,13 +68,13 @@ int main()
 
     std::string input;
     auto exit = false;
-    while(!exit)
+    while (!exit)
     {
         // Input
         std::cout << "system > ";
         std::getline(std::cin, input);
         auto inputs = split(input, " ");
-        
+
         /*std::cerr << "DEBUG: \n";
         for (auto& in : inputs)
             std::cerr << in << "\n";*/

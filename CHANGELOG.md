@@ -10,10 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * PhysicsFS is used for a virtual filesystem abstraction
+* spdlog logging library is used for logging
+* Basic layout of FileSystem class
 
 ### Changed
 
 * The file listing function now uses PhysicsFS
+* PhysicsFS is now initialized within FileSystem
 
 ## [0.0.1] - 2018-02-09
 

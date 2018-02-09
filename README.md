@@ -43,3 +43,4 @@ This software is dual licensed under the Public Domain and the MIT license, choo
 * [Elias Daler](https://twitter.com/EliasDaler) - Recommending the awesome library Sol 2
 * [Sol v2.0](https://github.com/ThePhD/sol2) [MIT] - Awesome C++ <-> Lua API wrapper library
 * [PhysicsFS](https://icculus.org/physfs/) [zlib] - Neat library for a virtual filesystem
+* [spdlog](https://github.com/gabime/spdlog) [MIT] - Simple logging system
