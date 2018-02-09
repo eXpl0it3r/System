@@ -29,6 +29,10 @@ The technical idea is, to have a all applications on the OS written in Lua, whil
 * [ ] Researching how much realism should exist in such a project
 * [ ] ???
 
+## Development
+
+Most of the activity can be tracked on the GitHub repository. For task tracking and collecting ideas a dedicated [Trello board](https://trello.com/b/kGXgRBsO/system) has been created.
+
 ## License
 
 This software is dual licensed under the Public Domain and the MIT license, choose whichever you prefer. See the LICENSE.md file for more details.
@@ -37,4 +41,5 @@ This software is dual licensed under the Public Domain and the MIT license, choo
 
 * [Lukas Dürrenberger](https://twitter.com/DarkCisum) - Author
 * [Elias Daler](https://twitter.com/EliasDaler) - Recommending the awesome library Sol 2
-* [Sol v2.0](https://github.com/ThePhD/sol2) - Awesome C++ <-> Lua API wrapper library
+* [Sol v2.0](https://github.com/ThePhD/sol2) [MIT] - Awesome C++ <-> Lua API wrapper library
+* [PhysicsFS](https://icculus.org/physfs/) [zlib] - Neat library for a virtual filesystem

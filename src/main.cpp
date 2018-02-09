@@ -3,6 +3,7 @@
 #include <vector>
 
 #include <sol.hpp>
+#include <physfs.h>
 
 std::vector<std::string> split(const std::string& input, const std::string& delimiter)
 {
@@ -33,15 +34,22 @@ std::vector<std::string> split(const std::string& input, const std::string& deli
 
 sol::as_table_t<std::vector<std::string>> fs_list()
 {
-   return std::vector<std::string>{
-        "haha.txt",
-        "no idea.md",
-        "clickme.exe"
-    };
+    std::vector<std::string> files;
+    
+    const auto rc = PHYSFS_enumerateFiles("/");
+    for (auto i = rc; *i != nullptr; i++)
+        files.emplace_back(*i);
+
+    return files;
 }
 
 int main()
 {
+    // Init PhysicsFS
+    PHYSFS_init(nullptr);
+    PHYSFS_addToSearchPath("test.7z", 1);
+
+    // Init Sol 2
     sol::state lua;
     lua.open_libraries(sol::lib::base, sol::lib::string, sol::lib::table);
     lua.set_function("fs_list", fs_list);
@@ -56,12 +64,10 @@ int main()
         std::cout << "system > ";
         std::getline(std::cin, input);
         auto inputs = split(input, " ");
-
-        std::cout << "You wish is my command!\n";
-        std::cerr << "DEBUG: \n";
-
+        
+        /*std::cerr << "DEBUG: \n";
         for (auto& in : inputs)
-            std::cerr << in << "\n";
+            std::cerr << in << "\n";*/
 
         // Processing
         if (!inputs.empty())
