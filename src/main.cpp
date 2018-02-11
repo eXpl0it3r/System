@@ -61,8 +61,11 @@ int main()
 
     // Init Sol 2
     sol::state lua;
-    lua.open_libraries(sol::lib::base, sol::lib::string, sol::lib::table);
-    lua.set_function("fs_list", fs_list);
+	lua.open_libraries(sol::lib::base, sol::lib::string, sol::lib::table);
+	auto filesystem = lua.create_named_table("fs");
+	filesystem.set_function("dir", &FileSystem::dir, fs);
+	filesystem.set_function("mkdir", &FileSystem::mkdir, fs);
+	filesystem.set_function("rmdir", &FileSystem::rmdir, fs);
 
     std::cout << "Welcome to the System!\n";
 
@@ -83,9 +86,23 @@ int main()
         if (!inputs.empty())
         {
             if (inputs[0] == "exit")
+			{
                 exit = true;
-            else if (inputs[0] == "ls")
-                lua.script("print(table.concat(fs_list(), ' '))");
+			}
+            else if (inputs[0] == "ls" || inputs[0] == "dir")
+			{
+                lua.script("print(table.concat(fs.dir(), ' '))");
+			}
+			else if (inputs[0] == "mkdir")
+			{
+				if (input.size() > 1)
+					lua.script(std::string("fs.mkdir('") + inputs[1] + std::string("')"));
+			}
+			else if (inputs[0] == "rmdir")
+			{
+				if (input.size() > 1)
+					lua.script(std::string("fs.rmdir('") + inputs[1] + std::string("')"));
+			}
         }
     }
 }
