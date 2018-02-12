@@ -7,7 +7,7 @@
 #include <physfs.h>
 #include <spdlog/spdlog.h>
 
-#include "FileSystem.hpp"
+#include "FileSystem/FileSystem.hpp"
 
 std::vector<std::string> split(const std::string& input, const std::string& delimiter)
 {
@@ -63,9 +63,9 @@ int main()
     sol::state lua;
 	lua.open_libraries(sol::lib::base, sol::lib::string, sol::lib::table);
 	auto filesystem = lua.create_named_table("fs");
-	filesystem.set_function("dir", &FileSystem::dir, fs);
-	filesystem.set_function("mkdir", &FileSystem::mkdir, fs);
-	filesystem.set_function("rmdir", &FileSystem::rmdir, fs);
+	filesystem.set_function("dir", &FileSystem::dir, &fs);
+	filesystem.set_function("mkdir", &FileSystem::mkdir, &fs);
+	filesystem.set_function("rmdir", &FileSystem::rmdir, &fs);
 
     std::cout << "Welcome to the System!\n";
 

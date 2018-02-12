@@ -44,7 +44,7 @@ FileSystem::~FileSystem()
 	m_logger->info("FileSystem was successfully deinitialized");
 }
 
-sol::as_table_t<std::vector<std::string>> FileSystem::dir(const std::string& path) const
+std::vector<std::string> FileSystem::dir(const std::string& path) const
 {
 	std::vector<std::string> files;
 
