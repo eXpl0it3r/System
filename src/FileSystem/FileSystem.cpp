@@ -19,8 +19,6 @@ FileSystem::FileSystem()
         m_logger->error("FileSystem couldn't be initialized: {0}", PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
         throw std::exception(PHYSFS_getErrorByCode(PHYSFS_getLastErrorCode()));
     }
-
-    PHYSFS_mount("filesystem", "/", 1);
 	
 	if (PHYSFS_setWriteDir("filesystem") == 0)
 	{
@@ -116,4 +114,15 @@ bool FileSystem::exists(const std::string& filepath) const
 
 	m_logger->info("FileSystem file does exist: '{0}'", filepath);
 	return true;
+}
+
+void FileSystem::mount(const std::string& newdir, const std::string& mountpoint) const
+{
+    if (PHYSFS_mount(newdir.c_str(), mountpoint.c_str(), 1) == 0)
+    {
+        m_logger->error("FileSystem failed to mount '{0}' at '{1}'", newdir, mountpoint);
+        return;
+    }
+
+    m_logger->info("FileSystem mounted '{0}' successfully at '{1}'", newdir, mountpoint);
 }

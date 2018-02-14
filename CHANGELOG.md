@@ -10,12 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * IFileSystem interface
+* Added mount function to the FileSystem
 
 ### Changed
 
 * Updated Lua from 5.1 to 5.3.4
 * Restructured source files
 * Don't allow the FileSystem to be copied
+* Mount filesystem externally
 
 ## [0.0.2] - 2018-02-11
 
