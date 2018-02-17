@@ -11,7 +11,7 @@ SCENARIO("FileSystem tests")
 
         WHEN("listing the directory content")
         {
-            auto files = fs.dir();
+            auto files = fs.dir("/");
 
             THEN("two files are returned")
             {
@@ -27,7 +27,7 @@ SCENARIO("FileSystem tests")
 
             THEN("the directory is being listed")
             {
-                auto files = fs.dir();
+                auto files = fs.dir("/");
 
                 REQUIRE(files.size() == 3);
                 REQUIRE(files[0] == "test");

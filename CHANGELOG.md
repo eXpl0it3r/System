@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * IFileSystem interface
 * Added mount function to the FileSystem
+* Added a simple Config class
 
 ### Changed
 

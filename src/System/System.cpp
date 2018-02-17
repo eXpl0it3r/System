@@ -19,6 +19,7 @@ void System::run()
     filesystem.set_function("dir", &FileSystem::dir, &fs);
     filesystem.set_function("mkdir", &FileSystem::mkdir, &fs);
     filesystem.set_function("rmdir", &FileSystem::rmdir, &fs);
+    filesystem.set_function("exists", &FileSystem::exists, &fs);
 
     std::cout << "Welcome to the System!\n";
 
@@ -44,7 +45,7 @@ void System::run()
             }
             else if (inputs[0] == "ls" || inputs[0] == "dir")
             {
-                lua.script("print(table.concat(fs.dir(), ' '))");
+                lua.script("print(table.concat(fs.dir('/'), ' '))");
             }
             else if (inputs[0] == "mkdir")
             {
@@ -56,6 +57,11 @@ void System::run()
                 if (input.size() > 1)
                     lua.script(std::string("fs.rmdir('") + inputs[1] + std::string("')"));
             }
+			else if (inputs[0] == "exists")
+			{
+				if (input.size() > 1)
+					lua.script(std::string("print(fs.exists('") + inputs[1] + std::string("'))"));
+			}
         }
     }
 }

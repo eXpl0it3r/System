@@ -116,13 +116,13 @@ bool FileSystem::exists(const std::string& filepath) const
 	return true;
 }
 
-void FileSystem::mount(const std::string& newdir, const std::string& mountpoint) const
+void FileSystem::mount(const std::string& dirname, const std::string& mount_point) const
 {
-    if (PHYSFS_mount(newdir.c_str(), mountpoint.c_str(), 1) == 0)
+    if (PHYSFS_mount(dirname.c_str(), mount_point.c_str(), 1) == 0)
     {
-        m_logger->error("FileSystem failed to mount '{0}' at '{1}'", newdir, mountpoint);
+        m_logger->error("FileSystem failed to mount '{0}' at '{1}'", dirname, mount_point);
         return;
     }
 
-    m_logger->info("FileSystem mounted '{0}' successfully at '{1}'", newdir, mountpoint);
+    m_logger->info("FileSystem mounted '{0}' successfully at '{1}'", dirname, mount_point);
 }
