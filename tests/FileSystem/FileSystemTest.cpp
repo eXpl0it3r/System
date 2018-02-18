@@ -4,7 +4,7 @@
 
 SCENARIO("FileSystem tests")
 {
-    GIVEN("FileSystem with a 7z archive")
+    GIVEN("FileSystem with two files")
     {
         FileSystem fs;
         fs.mount("filesystem", "/");
@@ -37,5 +37,63 @@ SCENARIO("FileSystem tests")
 
             fs.rmdir("test");
         }
+
+		WHEN("deleting a directory")
+        {
+			fs.mkdir("test");
+			fs.rmdir("test");
+
+			THEN("the directory is deleted")
+			{
+				auto files = fs.dir("/");
+
+				REQUIRE(files.size() == 2);
+				REQUIRE(files[0] == "test.lua");
+				REQUIRE(files[1] == "test.txt");
+			}
+        }
+
+		WHEN("checking if file exists and the file exists")
+        {
+			const auto result = fs.exists("test.lua");
+
+			THEN("the result is true")
+			{
+				REQUIRE(result == true);
+			}
+        }
+
+		WHEN("checking if file exists and the file does not exist")
+		{
+			const auto result = fs.exists("fileiwantdoesnotexist");
+
+			THEN("the result is false")
+			{
+				REQUIRE(result == false);
+			}
+		}
+
+		WHEN("checking if directory exists and the directory exists")
+		{
+			fs.mkdir("test");
+			const auto result = fs.exists("test.lua");
+
+			THEN("the result is true")
+			{
+				REQUIRE(result == true);
+			}
+
+			fs.rmdir("test");
+		}
+
+		WHEN("checking if directory exists and the directory does not exist")
+		{
+			const auto result = fs.exists("directoryiwantdoesnotexist/");
+
+			THEN("the result is false")
+			{
+				REQUIRE(result == false);
+			}
+		}
     }
 }

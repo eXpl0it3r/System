@@ -104,15 +104,15 @@ void FileSystem::remove(const std::string& filename) const
 	m_logger->info("FileSystem successfully deleted the file: '{0}'", filename);
 }
 
-bool FileSystem::exists(const std::string& filepath) const
+bool FileSystem::exists(const std::string& path) const
 {
-	if (PHYSFS_exists(filepath.c_str()) == 0)
+	if (PHYSFS_exists(path.c_str()) == 0)
 	{
-		m_logger->info("FileSystem file doesn't exist: '{0}'", filepath);
+		m_logger->info("FileSystem file or directory doesn't exist: '{0}'", path);
 		return false;
 	}
 
-	m_logger->info("FileSystem file does exist: '{0}'", filepath);
+	m_logger->info("FileSystem file or directory does exist: '{0}'", path);
 	return true;
 }
 

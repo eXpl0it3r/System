@@ -23,7 +23,7 @@ public:
     void mkdir(const std::string& dirname) const override final;
     void rmdir(const std::string& dirname) const override final;
     void remove(const std::string& filename) const override final;
-	bool exists(const std::string& filepath) const override final;
+	bool exists(const std::string& path) const override final;
     void mount(const std::string& dirname, const std::string& mount_point) const override final;
 
 private:

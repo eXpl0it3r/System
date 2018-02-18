@@ -20,6 +20,7 @@ void System::run()
     filesystem.set_function("mkdir", &FileSystem::mkdir, &fs);
     filesystem.set_function("rmdir", &FileSystem::rmdir, &fs);
     filesystem.set_function("exists", &FileSystem::exists, &fs);
+    filesystem.set_function("remove", &FileSystem::remove, &fs);
 
     std::cout << "Welcome to the System!\n";
 
@@ -61,6 +62,11 @@ void System::run()
 			{
 				if (input.size() > 1)
 					lua.script(std::string("print(fs.exists('") + inputs[1] + std::string("'))"));
+			}
+			else if (inputs[0] == "remove" | inputs[0] == "rm")
+			{
+				if (input.size() > 1)
+					lua.script(std::string("fs.remove('") + inputs[1] + std::string("')"));
 			}
         }
     }
