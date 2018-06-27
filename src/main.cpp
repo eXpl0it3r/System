@@ -1,6 +1,7 @@
 #include <spdlog/spdlog.h>
-#include "System/System.hpp"
-#include "Config/Config.hpp"
+
+#include <System/System.hpp>
+#include <Config/Config.hpp>
 
 void init_logger(const Config& config)
 {

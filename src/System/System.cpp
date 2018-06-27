@@ -4,7 +4,7 @@
 
 #include <sol.hpp>
 
-#include "../FileSystem/FileSystem.hpp"
+#include <FileSystem/FileSystem.hpp>
 
 void System::run()
 {

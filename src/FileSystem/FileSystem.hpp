@@ -6,7 +6,7 @@
 
 #include <spdlog/spdlog.h>
 
-#include "IFileSystem.hpp"
+#include <FileSystem/IFileSystem.hpp>
 
 class FileSystem : public IFileSystem
 {
